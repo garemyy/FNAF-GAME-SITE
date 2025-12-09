@@ -15,9 +15,6 @@ export const Game = () => {
   const [gameKey, setGameKey] = useState(0);
   const gameCanvasRef = useRef<GameCanvasRef>(null);
 
-  // 🎵 Riferimento alla musica di gioco
-  const gameMusicRef = useRef<HTMLAudioElement | null>(null);
-
   useEffect(() => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 768 || 'ontouchstart' in window);
@@ -26,27 +23,6 @@ export const Game = () => {
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
-
-  // Avvio musica quando si entra nello stato "playing"
-  useEffect(() => {
-    if (gameState === 'playing') {
-      gameMusicRef.current = new Audio("/publica/musicgame.mp3");
-      gameMusicRef.current.volume = 0.7;
-      gameMusicRef.current.loop = true;
-
-      gameMusicRef.current
-        .play()
-        .catch(() => {
-          console.log("Autoplay bloccato, partirà al primo click");
-        });
-    } else {
-      // Stop musica quando si esce dal playing
-      if (gameMusicRef.current) {
-        gameMusicRef.current.pause();
-        gameMusicRef.current.currentTime = 0;
-      }
-    }
-  }, [gameState]);
 
   const handleStart = useCallback(() => {
     setGameState('playing');

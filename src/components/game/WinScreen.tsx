@@ -5,18 +5,6 @@ export const WinScreen = () => {
   const [showMessage, setShowMessage] = useState(false);
   const [showInstructions, setShowInstructions] = useState(false);
 
-  // 🎵 Musica della schermata finale
-  useEffect(() => {
-    const winMusic = new Audio("/publica/win.mp3");
-    winMusic.volume = 0.7;
-    winMusic.play();
-
-    return () => {
-      winMusic.pause();
-      winMusic.currentTime = 0;
-    };
-  }, []); // <-- qui termina useEffect
-
   useEffect(() => {
     const numberTimer = setTimeout(() => setShowNumber(true), 2000);
     const messageTimer = setTimeout(() => setShowMessage(true), 4000);
@@ -49,7 +37,7 @@ export const WinScreen = () => {
                 Text this number:
               </p>
               <p className="text-xl md:text-4xl text-primary retro-glow tracking-widest font-bold">
-              +1 (782) 603-1615
+                +1 (782) 603-1615
               </p>
             </div>
           )}
