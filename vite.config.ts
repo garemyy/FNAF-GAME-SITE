@@ -1,6 +1,7 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import { componentTagger } from "lovable-tagger";
+import path from "path"; // Importo 'path' per gestire correttamente i percorsi
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
@@ -15,7 +16,7 @@ export default defineConfig(({ mode }) => ({
   ].filter(Boolean),
   resolve: {
     alias: {
-      "@": "/src", // alias semplice e funzionante in Vite
+      "@": path.resolve(__dirname, "src"), // Alias corretto per Vite
     },
   },
 }));
